@@ -27,8 +27,9 @@ def login_view(request):
             return render(request, "auctions/login.html", {
                 "message": "Invalid username and/or password."
             })
-    else:
-        return render(request, "auctions/login.html")
+    if request.user.is_authenticated:
+        return HttpResponseRedirect(reverse("index"))
+    return render(request, "auctions/login.html")
 
 
 def logout_view(request):
