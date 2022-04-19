@@ -14,8 +14,8 @@ class Listing(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name="posts")
     description = models.TextField()
     bid = models.FloatField()
-    imgurl = models.URLField(blank=True)
-    categories = models.ManyToManyField(Category, on_delete=models.PROTECT, related_name="listings")
+    imgurl = models.URLField()
+    categories = models.ManyToManyField(Category, blank=True, related_name="listings")
     created_date = models.DateField(auto_now_add=True)
     
     def __str__(self):
