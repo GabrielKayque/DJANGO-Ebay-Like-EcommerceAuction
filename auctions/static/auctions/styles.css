@@ -1,3 +1,17 @@
 body {
     padding: 10px;
 }
+
+.img_index {
+    border-radius: 30px;
+    max-width: 25%;
+    max-height: 200px;
+}
+
+ul {
+    list-style-type: none;
+}
+
+#separator {
+    border-color: black;
+}

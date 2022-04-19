@@ -2,6 +2,15 @@
 
 {% block body %}
     <h2>Active Listings</h2>
-
-    TODO
+<ul>
+    {% for product in products_list %}
+        <li>
+            {% if product.imgurl %}
+                <img class="img_index" src="{{ product.imgurl }}" alt="{{ product.title }}">
+            {% endif %}
+            {{ product.title.capitalize }} by {{ product.author.username.capitalize }} - Auction Created on {{ product.created_date }}
+        </li>
+        <hr id="separator">
+    {% endfor %}    
+</ul>
 {% endblock %}
