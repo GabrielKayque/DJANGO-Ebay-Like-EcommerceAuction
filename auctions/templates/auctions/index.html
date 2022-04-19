@@ -6,9 +6,11 @@
     {% for product in products_list %}
         <li>
             {% if product.imgurl %}
-                <img class="img_index" src="{{ product.imgurl }}" alt="{{ product.title }}">
+                <a href="{% url 'auction-page' product.pk %}">
+                    <img class="img_index" src="{{ product.imgurl }}" alt="{{ product.title }}">
+                </a>
             {% endif %}
-            {{ product.title.capitalize }} by {{ product.author.username.capitalize }} - Auction Created on {{ product.created_date }}
+            <a href="{% url 'auction-page' product.pk  %}">{{ product.title.capitalize }}</a> by {{ product.author.username.capitalize }} - Auction Created on {{ product.created_date }}
         </li>
         <hr id="separator">
     {% endfor %}    

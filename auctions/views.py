@@ -9,10 +9,13 @@ from .models import User, Listing
 
 def index(request):
     products_list = Listing.objects.all()
-    print(products_list)
-    print(products_list.first().imgurl)
     return render(request, "auctions/index.html", {
         "products_list" : products_list,
+    })
+    
+def auction_page(request, pk):
+    return render(request, "auctions/auction.html", {
+        "product": Listing.objects.get(pk=pk)
     })
 
 

@@ -5,7 +5,12 @@ body {
 .img_index {
     border-radius: 30px;
     max-width: 25%;
-    max-height: 200px;
+    max-height: auto;
+}
+
+.img_page {
+    max-width: 35%;
+    max-height: auto;
 }
 
 ul {
