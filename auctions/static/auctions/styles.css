@@ -8,7 +8,7 @@ body {
     max-height: auto;
 }
 
-.img_page {
+#img_page {
     max-width: 35%;
     max-height: auto;
 }

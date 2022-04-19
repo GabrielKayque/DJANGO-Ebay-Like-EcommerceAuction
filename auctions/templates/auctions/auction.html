@@ -1,14 +1,16 @@
 {% extends 'auctions/layout.html' %}
 
+{% block title %}{{ product.title.capitalize }}{% endblock title %}
 
 {% block body %}
     <h1>{{ product.title.capitalize }}</h1>
     <hr>
     {% if product.imgurl %}
-    <img class="img_page" src="{{ product.imgurl }}" alt="{{ product.title }}">
+    <img id="img_page" src="{{ product.imgurl }}" alt="{{ product.title }}">
     {% endif %}
     {{ product.description }}
     <br>
+    <strong>ACTUAL PRICE: ${{ product.bid }}</strong><br>
     <small>Created: {{ product.created_date }} by: <strong>{{ product.author.username.capitalize }}</strong></small>
 
 {% endblock body %}
