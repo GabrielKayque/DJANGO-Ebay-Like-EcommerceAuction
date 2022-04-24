@@ -8,7 +8,7 @@ from .models import User, Listing
 
 
 def index(request):
-    products_list = Listing.objects.all()
+    products_list = Listing.objects.all().order_by('-id')
     return render(request, "auctions/index.html", {
         "products_list" : products_list,
     })

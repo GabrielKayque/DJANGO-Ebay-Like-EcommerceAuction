@@ -4,13 +4,25 @@ body {
 
 .img_index {
     border-radius: 30px;
-    max-width: 25%;
+    max-width: 70%;
     max-height: auto;
+}
+
+.description_index {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    border: 3px solid green;;
+
 }
 
 #img_page {
     max-width: 35%;
     max-height: auto;
+}
+
+#createdtime_small {
+    font-size: 0.65em;
 }
 
 ul {

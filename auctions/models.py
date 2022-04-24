@@ -15,7 +15,7 @@ class Category(models.Model):
 class Listing(models.Model):
     title = models.CharField(max_length=64)
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name="posts")
-    description = models.TextField(max_length=300)
+    description = models.TextField(max_length=400)
     bid = models.FloatField()
     imgurl = models.URLField(blank=True)
     categories = models.ManyToManyField(Category, blank=True, related_name="listings")

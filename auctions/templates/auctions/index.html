@@ -4,17 +4,35 @@
 
 {% block body %}
     <h2>Active Listings</h2>
-<ul>
-    {% for product in products_list %}
-        <li>
-            {% if product.imgurl %}
-                <a href="{% url 'auction-page' product.pk %}">
-                    <img class="img_index" src="{{ product.imgurl }}" alt="{{ product.title }}">
-                </a>
-            {% endif %}
-            <a href="{% url 'auction-page' product.pk  %}">{{ product.title.capitalize }}</a> by {{ product.author.username.capitalize }} - Auction Created on {{ product.created_date }}
-        </li>
-        <hr id="separator">
-    {% endfor %}    
-</ul>
+    <ul>
+        {% for product in products_list %}
+            <li>
+                <div class="row">
+                    <div class="col-lg-6 col-sm-6">
+                        <a href="{% url 'auction-page' product.pk %}">
+                            {% if product.imgurl %}
+                                <img class="img_index" src="{{ product.imgurl }}" alt="{{ product.title }}">
+                            {% else %}
+                                <img class="img_index" src="https://thumbs.dreamstime.com/b/no-image-available-icon-flat-vector-no-image-available-icon-flat-vector-illustration-132482953.jpg" alt="{{ product.title }}">
+                            {% endif %}
+                        </a>
+                    </div>
+
+                    <div class="col-lg-6 col-sm-6 description_index">
+                        <div>
+                            <p>
+                                <a href="{% url 'auction-page' product.pk  %}">{{ product.title.capitalize }}</a> 
+                                <small> by {{ product.author.username.capitalize }}</small> - {{ product.description | slice:":100" | safe }} 
+                            </p>
+                            <p id="createdtime_small">
+                                Auction Created on {{ product.created_date }}
+                            </p>
+                        </div>
+                    </div>
+                    
+                </div>
+            </li>
+            <hr id="separator">
+        {% endfor %}    
+    </ul>
 {% endblock %}
