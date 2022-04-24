@@ -4,13 +4,18 @@
 
 {% block body %}
     <h1>{{ product.title.capitalize }}</h1>
-    <hr>
-    {% if product.imgurl %}
-        <img id="img_page" src="{{ product.imgurl }}" alt="{{ product.title }}">
-    {% else %}
-        <img id="img_page" src="https://thumbs.dreamstime.com/b/no-image-available-icon-flat-vector-no-image-available-icon-flat-vector-illustration-132482953.jpg" alt="{{ product.title }}">
-    {% endif %}
-    {{ product.description }}
+    <div class="row table-bordered">
+        <div class="col-lg-6 col-sm-6">
+            {% if product.imgurl %}
+            <img class="img_page" src="{{ product.imgurl }}" alt="{{ product.title }}">
+            {% else %}
+            <img class="img_page" src="https://thumbs.dreamstime.com/b/no-image-available-icon-flat-vector-no-image-available-icon-flat-vector-illustration-132482953.jpg" alt="{{ product.title }}">
+            {% endif %}
+        </div>
+        <div class="col-lg-6 col-sm-6 description_box">
+            {{ product.description | safe }}
+        </div>
+    </div>
     <br>
     <strong>ACTUAL PRICE: ${{ product.bid }}</strong><br>
     <small>Created: {{ product.created_date }} by: <strong>{{ product.author.username.capitalize }}</strong></small>

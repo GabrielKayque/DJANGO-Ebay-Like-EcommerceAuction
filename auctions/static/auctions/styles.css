@@ -5,21 +5,29 @@ body {
 .img_index {
     border-radius: 30px;
     max-width: 70%;
-    max-height: auto;
+    height: auto;
+    max-height: 22em;
 }
 
-.description_index {
+.img_page {
+    max-width: 100%;
+    height: auto;
+    max-height: 22em;
+}
+
+.description_box {
     display: flex;
     justify-content: left;
     align-items: center;
-    border: 3px solid green;;
+    border: 3px solid green;
 
 }
 
-#img_page {
-    max-width: 35%;
-    max-height: auto;
+.borderi {
+    border: 3px solid green;
+
 }
+
 
 #createdtime_small {
     font-size: 0.65em;
