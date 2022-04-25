@@ -19,15 +19,9 @@ body {
     display: flex;
     justify-content: left;
     align-items: center;
-    border: 3px solid green;
+    /* border: 3px solid green; */
 
 }
-
-.borderi {
-    border: 3px solid green;
-
-}
-
 
 #createdtime_small {
     font-size: 0.65em;
@@ -39,4 +33,10 @@ ul {
 
 #separator {
     border-color: black;
+}
+
+.btnback {
+    padding: 0;
+    color: red;
+    border: 3px solid green ;
 }

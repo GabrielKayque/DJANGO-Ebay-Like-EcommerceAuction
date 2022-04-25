@@ -22,10 +22,10 @@
                         <div>
                             <p>
                                 <a href="{% url 'auction-page' product.pk  %}">{{ product.title.capitalize }}</a> 
-                                <small> by {{ product.author.username.capitalize }}</small> - {{ product.description | slice:":100" | safe }} 
+                                - {{ product.description | slice:":100" | safe }} 
                             </p>
                             <p id="createdtime_small">
-                                Auction Created on {{ product.created_date }}
+                               Auction created: {{ product.created_date }} by {{ product.author.username.capitalize }}
                             </p>
                         </div>
                     </div>
