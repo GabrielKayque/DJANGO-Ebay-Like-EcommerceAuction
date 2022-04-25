@@ -3,7 +3,7 @@ from django.db import IntegrityError
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
-
+from .forms import NewAuctionForm
 from .models import User, Listing
 
 
@@ -16,6 +16,12 @@ def index(request):
 def auction_page(request, pk):
     return render(request, "auctions/auction.html", {
         "product": Listing.objects.get(pk=pk)
+    })
+
+def create_page(request):
+    
+    return render(request, "auctions/createpage.html", {
+        "form": NewAuctionForm(),
     })
 
 
