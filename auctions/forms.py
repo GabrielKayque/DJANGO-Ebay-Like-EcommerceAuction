@@ -13,7 +13,7 @@ class NewAuctionForm(forms.ModelForm):
         widgets = {
             'title': forms.TextInput(attrs={'class':'form-control','placeholder':'Auction Title'}),
             'description': forms.Textarea(attrs={'class':'form-control','placeholder':'Tell more about your product Here..'}),
-            'categories': forms.MultipleChoiceField(attrs={'class':'form-control'}),
+            'categories': forms.SelectMultiple(attrs={'class':'form-control'}),
             'imgurl': forms.TextInput(attrs={'class':'form-control','placeholder':'Put an HTML link for your image'}),
             'bid': forms.NumberInput(attrs={'class':'form-control','placeholder':'How much is the Initial bid?','step':'0.01'}),
             
