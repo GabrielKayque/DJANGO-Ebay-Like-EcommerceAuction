@@ -20,10 +20,10 @@
 
                     <div class="col-lg-6 col-sm-6 description_box">
                         <div>
-                            <p>Actual Bid: <strong>{{ product.bid |floatformat:2 }}</strong></p>
+                            <p>Actual Price: <strong>${{ product.bid |floatformat:2 }}</strong></p>
                             <p>
                                 <a href="{% url 'auction-page' product.pk  %}">{{ product.title.capitalize }}</a> 
-                                - {{ product.description | slice:":100" | safe }} 
+                                - {{ product.description | truncatewords:27 | safe }} 
                             </p>
                             <p id="createdtime_small">
                                Auction created: {{ product.created_date }} by {{ product.author.username.capitalize }}
