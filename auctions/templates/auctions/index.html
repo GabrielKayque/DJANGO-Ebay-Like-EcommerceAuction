@@ -1,6 +1,6 @@
 {% extends "auctions/layout.html" %}
 
-{% block title %}Home{% endblock title %}
+{% block title %}Home - Active Listings{% endblock title %}
 
 {% block body %}
     <h2>Active Listings</h2>
@@ -20,6 +20,7 @@
 
                     <div class="col-lg-6 col-sm-6 description_box">
                         <div>
+                            <p>Actual Bid: <strong>{{ product.bid |floatformat:2 }}</strong></p>
                             <p>
                                 <a href="{% url 'auction-page' product.pk  %}">{{ product.title.capitalize }}</a> 
                                 - {{ product.description | slice:":100" | safe }} 

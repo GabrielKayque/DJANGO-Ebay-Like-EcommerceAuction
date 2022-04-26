@@ -7,19 +7,16 @@
  
 <h1>Create new auction</h1>
 
-{% if error %}
-<p class="error">{{ error }}</p>
-{% endif %}
 <div class="row">
-        <div class="col-9 col-lg-8">
-            
-            <form method="post" action="{% url 'createpage'%}">
-                {% csrf_token %}
-                {{ form.as_p }} 
-                <button class="btn btn-secondary btn-sm" type="submit">Post Auction</button>
-            </form>
-        </div>
+    <div class="col-9 col-lg-8">
+        
+        <form method="post" action="{% url 'createpage'%}">
+            {% csrf_token %}
+            {{ form.as_p }} 
+            <button class="btn btn-secondary btn-sm" type="submit">Post Auction</button>
+        </form>
     </div>
+</div>
 
     
     

@@ -1,6 +1,6 @@
 {% extends 'auctions/layout.html' %}
 
-{% block title %}{{ product.title.capitalize }}{% endblock title %}
+{% block title %}{{ product.title |title }}{% endblock title %}
 
 {% block body %}
     <h1>{{ product.title.capitalize }}</h1>
@@ -15,7 +15,7 @@
         </div>
         
         <div class="col-lg-6 col-sm-6 description_box">
-            {{ product.description | safe }}
+            {{ product.description |linebreaksbr | safe }}
         </div>
     </div>
 
