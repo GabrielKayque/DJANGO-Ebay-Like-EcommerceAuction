@@ -4,14 +4,13 @@
 
 
 {% block body %}
-    <h1>Create new auction</h1>
+ 
+<h1>Create new auction</h1>
 
-    
-
-    {% if error %}
-        <p class="error">{{ error }}</p>
-    {% endif %}
-    <div class="row">
+{% if error %}
+<p class="error">{{ error }}</p>
+{% endif %}
+<div class="row">
         <div class="col-9 col-lg-8">
             
             <form method="post" action="{% url 'createpage'%}">
@@ -22,6 +21,8 @@
         </div>
     </div>
 
+    
+    
 {% endblock body %}
 
     

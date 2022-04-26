@@ -3,6 +3,9 @@ from django.db import IntegrityError
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
+
+from Project1.wiki.encyclopedia.forms import EditForm
+from Project1.wiki.encyclopedia.views import title
 from .forms import NewAuctionForm
 from .models import User, Listing
 
@@ -19,10 +22,18 @@ def auction_page(request, pk):
     })
 
 def create_page(request):
-    
-    return render(request, "auctions/createpage.html", {
-        "form": NewAuctionForm(),
-    })
+    form = NewAuctionForm()
+    form.fields['author'].initial = User.objects.get(username=request.user).username
+    if request.method == "POST":
+        form = NewAuctionForm(request.POST)
+        if form.is_valid():
+            print(f"{form.cleaned_date['title']}")
+            
+    if request.user.is_authenticated:
+        return render(request, "auctions/createpage.html", {
+            "form": form,
+        })
+    return HttpResponseRedirect(reverse("login"))
 
 
 def login_view(request):
