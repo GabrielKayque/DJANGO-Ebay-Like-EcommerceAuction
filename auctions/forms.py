@@ -1,8 +1,5 @@
 from django import forms
-from django.db.models import fields
-from django.forms import widgets
-from django.forms.fields import ChoiceField
-from .models import Listing, Category,User
+from .models import Listing
 
 class NewAuctionForm(forms.ModelForm):
     class Meta:
@@ -26,4 +23,3 @@ class NewAuctionForm(forms.ModelForm):
         self.fields['description'].label = ""
         self.fields['categories'].label = "Categories: Hold Ctrl to choose more than one"
         
-    

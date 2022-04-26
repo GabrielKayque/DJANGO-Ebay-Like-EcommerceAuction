@@ -1,5 +1,7 @@
 body {
+    background-color: #f6f6f6;
     padding: 10px;
+    font-size: 1.4em;
 }
 
 .img_index {
@@ -10,6 +12,7 @@ body {
 }
 
 .img_page {
+    border-radius: 15px;
     max-width: 100%;
     height: auto;
     max-height: 22em;
