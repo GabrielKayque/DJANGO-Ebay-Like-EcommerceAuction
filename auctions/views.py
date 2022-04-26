@@ -1,11 +1,8 @@
 from django.contrib.auth import authenticate, login, logout
 from django.db import IntegrityError
 from django.http import HttpResponse, HttpResponseRedirect
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from django.urls import reverse
-
-from Project1.wiki.encyclopedia.forms import EditForm
-from Project1.wiki.encyclopedia.views import title
 from .forms import NewAuctionForm
 from .models import User, Listing
 
@@ -22,14 +19,17 @@ def auction_page(request, pk):
     })
 
 def create_page(request):
-    form = NewAuctionForm()
-    form.fields['author'].initial = User.objects.get(username=request.user).username
-    if request.method == "POST":
-        form = NewAuctionForm(request.POST)
-        if form.is_valid():
-            print(f"{form.cleaned_date['title']}")
-            
+    
     if request.user.is_authenticated:
+        form = NewAuctionForm()
+        form.fields['author'].initial = User.objects.get(username=request.user)
+        if request.method == "POST":
+            form = NewAuctionForm(request.POST)
+            if form.is_valid():
+                form.save()
+                return redirect(reverse("auction-page",args={Listing.objects.last().id}))
+            
+                
         return render(request, "auctions/createpage.html", {
             "form": form,
         })
@@ -40,7 +40,7 @@ def login_view(request):
     if request.method == "POST":
 
         # Attempt to sign user in
-        username = request.POST["username"]
+        username = request.POST["username"].lower()
         password = request.POST["password"]
         user = authenticate(request, username=username, password=password)
 
@@ -64,7 +64,7 @@ def logout_view(request):
 
 def register(request):
     if request.method == "POST":
-        username = request.POST["username"]
+        username = request.POST["username"].lower().strip()
         email = request.POST["email"]
 
         # Ensure password matches confirmation
