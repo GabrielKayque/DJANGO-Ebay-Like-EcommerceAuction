@@ -1,5 +1,6 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
+from django.db.models.deletion import CASCADE
 
 class User(AbstractUser):
     pass
@@ -23,4 +24,12 @@ class Listing(models.Model):
     
     def __str__(self):
         return f"{self.title} | {self.author}"
+    
+class Watchlist(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="watchlist")
+    product = models.ManyToManyField(Listing)
+    
+    def __str__(self):
+        return f"{self.user}'s Watchlist"
+    
 
