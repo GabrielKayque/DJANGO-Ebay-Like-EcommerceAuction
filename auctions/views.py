@@ -55,6 +55,8 @@ def add_watchlist(request, pk):
     if Watchlist.objects.filter(user=request.user, product=product_to_add).exists():
         userlist = Watchlist.objects.get(user=request.user)
         userlist.product.remove(product_to_add)
+        if request.method == "POST":
+            return redirect(reverse("watchlist-page"))
         return redirect(reverse("auction-page", args={pk}))
     userlist, _ = Watchlist.objects.get_or_create(user=request.user)
     userlist.product.add(product_to_add)

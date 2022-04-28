@@ -22,7 +22,11 @@
                         <td>{{ item.title }}</td>
                         <td>{{ item.bid }}</td>
                         <td>Change it</td>
-                        <td><a href="{% url 'watchlist' item.id %}" role="button" class="btn btn-outline-primary btn-lg">X</a></td>
+                        <td>
+                            <form action="{% url 'watchlist' item.id %}" method="POST">
+                                {% csrf_token %}
+                                <button class="btn btn-outline-primary btn-lg" type="submit" name="q">X</button>
+                        </form></td>
             {% endfor %}
                     </tr>
         </table>
