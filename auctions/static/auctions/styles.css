@@ -43,3 +43,11 @@ ul {
     color: red;
     border: 3px solid green ;
 }
+
+.trow_watchlist_green {
+    background-color: rgb(212, 228, 186);
+}
+
+.trow_watchlist_red {
+    background-color: rgb(235, 189, 189);
+}

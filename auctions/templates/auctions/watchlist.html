@@ -5,22 +5,27 @@
     <h2>Your Watchlist, {{ user.username.capitalize }}</h2>
     
     <div class="table-responsive">
-        <table class="table table-striped">
+        <table class="table">
             <tr>
                 <th>Product</th>
                 <th>Current Price</th>
                 <th>Your?</th>
                 <th>Delete</th>
             </tr>
-            {% for item in watchlist.product.all %}
-                <tr>
-                    <th>{{ item.title }}</th>
-                    <th>{{ item.bid }}</th>
-                    <th>Change it</th>
-                    <th><a href="{% url 'watchlist' item.id %}" role="button" class="btn btn-outline-primary btn-lg">X</a></th>
-                </tr>            
+            {% for item in watchlist.product.all|dictsort:"title" %}
+                
+                {% if item.bid < 400 %}                    
+                    <tr class="trow_watchlist_red">
+                {% else %}
+                    <tr class="trow_watchlist_green">
+                {% endif %}
+                        <td>{{ item.title }}</td>
+                        <td>{{ item.bid }}</td>
+                        <td>Change it</td>
+                        <td><a href="{% url 'watchlist' item.id %}" role="button" class="btn btn-outline-primary btn-lg">X</a></td>
             {% endfor %}
-                </table>
-            </div>
+                    </tr>
+        </table>
+    </div>
 {% endblock body %}
     
