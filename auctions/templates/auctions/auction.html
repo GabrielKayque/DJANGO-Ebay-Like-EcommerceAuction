@@ -3,10 +3,21 @@
 {% block title %}{{ product.title |title }}{% endblock title %}
 
 {% block body %}
-    <h1>{{ product.title.capitalize }}</h1>
+    <h1>{{ product.title.capitalize }} 
+        {% if user.is_authenticated and product.author.id != user.id %}
+            {% if not in_watchlist %}
+            <a href="{% url 'watchlist' product.id %}" role="button" class="btn btn-outline-primary btn-lg">Add to Watchlist</a>
+            {% else %}
+            <a href="{% url 'watchlist' product.id %}" role="button" class="btn btn-outline-primary btn-lg">Remove from Watchlist</a>
+            {% endif %}
+        {% elif user.is_authenticated and product.author.id == user.id %}
+            <small><small>[This product is yours]</small></small>
+        {% endif %}
+        
+    </h1>
 
     <div class="row table-bordered">
-        <div class="col-lg-6 col-sm-6">
+        <div class="col-lg-6 col-md-6">
             {% if product.imgurl %}
             <img class="img_page" src="{{ product.imgurl }}" alt="{{ product.title }}">
             {% else %}
@@ -14,7 +25,7 @@
             {% endif %}
         </div>
         
-        <div class="col-lg-6 col-sm-6 description_box">
+        <div class="col-lg-6 col-md-6 description_box">
             {{ product.description |linebreaksbr | safe }}
         </div>
     </div>

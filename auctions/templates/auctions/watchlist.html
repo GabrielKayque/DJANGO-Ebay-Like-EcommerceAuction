@@ -1,0 +1,26 @@
+{% extends 'auctions/layout.html' %}
+
+
+{% block body %}
+    <h2>Your Watchlist, {{ user.username.capitalize }}</h2>
+    
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <tr>
+                <th>Product</th>
+                <th>Current Price</th>
+                <th>Your?</th>
+                <th>Delete</th>
+            </tr>
+            {% for item in watchlist.product.all %}
+                <tr>
+                    <th>{{ item.title }}</th>
+                    <th>{{ item.bid }}</th>
+                    <th>Change it</th>
+                    <th><a href="{% url 'watchlist' item.id %}" role="button" class="btn btn-outline-primary btn-lg">X</a></th>
+                </tr>            
+            {% endfor %}
+                </table>
+            </div>
+{% endblock body %}
+    

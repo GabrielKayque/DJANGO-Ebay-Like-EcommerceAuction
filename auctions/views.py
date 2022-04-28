@@ -1,10 +1,11 @@
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 from django.db import IntegrityError
 from django.http import HttpResponse, HttpResponseRedirect
-from django.shortcuts import redirect, render
+from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
 from .forms import NewAuctionForm
-from .models import User, Listing
+from .models import User, Listing, Watchlist
 
 
 def index(request):
@@ -12,14 +13,28 @@ def index(request):
     return render(request, "auctions/index.html", {
         "products_list" : products_list,
     })
+
+@login_required(login_url='/login') 
+def watchlist_page(request):
+    userlist = Watchlist.objects.get(user=request.user)
+    return render(request, "auctions/watchlist.html", {
+        "watchlist": userlist
+    })
     
 def auction_page(request, pk):
+    in_watchlist = False
+    product = Listing.objects.get(pk=pk)
+    try:
+        if Watchlist.objects.filter(user=request.user, product=product).exists():
+            in_watchlist = True
+    except TypeError:
+        pass
     return render(request, "auctions/auction.html", {
-        "product": Listing.objects.get(pk=pk)
+        "product": product,
+        "in_watchlist": in_watchlist,
     })
 
 def create_page(request):
-    
     if request.user.is_authenticated:
         form = NewAuctionForm()
         form.fields['author'].initial = User.objects.get(username=request.user)
@@ -35,6 +50,17 @@ def create_page(request):
         })
     return HttpResponseRedirect(reverse("login"))
 
+def add_watchlist(request, pk):
+    product_to_add = get_object_or_404(Listing, id=pk)
+    if Watchlist.objects.filter(user=request.user, product=product_to_add).exists():
+        userlist = Watchlist.objects.get(user=request.user)
+        userlist.product.remove(product_to_add)
+        return redirect(reverse("auction-page", args={pk}))
+    userlist, _ = Watchlist.objects.get_or_create(user=request.user)
+    userlist.product.add(product_to_add)
+    return redirect(reverse("auction-page", args={pk}))
+
+        
 
 def login_view(request):
     if request.method == "POST":
