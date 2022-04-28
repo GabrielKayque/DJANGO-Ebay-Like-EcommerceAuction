@@ -19,7 +19,7 @@
                 {% else %}
                     <tr class="trow_watchlist_green">
                 {% endif %}
-                        <td>{{ item.title }}</td>
+                        <td><a href="{% url 'auction-page' item.id %}">{{ item.title}}</td></a>
                         <td>{{ item.bid }}</td>
                         <td>Change it</td>
                         <td>
