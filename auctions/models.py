@@ -10,7 +10,7 @@ class Category(models.Model):
     category = models.CharField(max_length=25)
     
     def __str__(self):
-        return f"{self.category}"
+           return f"{self.category}"
     
     
 class Listing(models.Model):
@@ -32,4 +32,3 @@ class Watchlist(models.Model):
     def __str__(self):
         return f"{self.user}'s Watchlist"
     
-

@@ -4,6 +4,7 @@ from .models import Category, Listing, User, Watchlist
 # Register your models here.
 class ListingAdmin(admin.ModelAdmin):
     filter_horizontal = ("categories",)
+    list_filter = ('categories',)
 
 admin.site.register(User)
 admin.site.register(Category)
